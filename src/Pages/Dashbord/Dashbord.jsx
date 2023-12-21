@@ -2,12 +2,15 @@ import { IoHome } from "react-icons/io5";
 import { LuLayoutGrid } from "react-icons/lu";
 import { RxAvatar } from "react-icons/rx";
 import { FaPowerOff } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../AppContext/AppContextProvider";
 import { AiFillPlusCircle } from "react-icons/ai";
+import Modal from "../../Components/Modal/Modal";
 
 const Dashbord = () => {
   const { currentUser } = useContext(AppContext);
+  const [isClicked, setIsClicked] = useState(false);
+
   return (
     <div className='flex max-w-screen-2xl mx-auto rounded border min-h-screen'>
       <div className='w-[250px] bg-slate-50 border-r-2'>
@@ -41,7 +44,7 @@ const Dashbord = () => {
 
       <div className='flex-1 p-2'>
         {/* Name and Image */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b-2 pb-4">
           <div className="flex items-center gap-2">
             <img className="h-[80px] w-[80px] object-cover rounded-full border border-blue-600" src={currentUser.photoURL} alt="" />
             <div>
@@ -51,10 +54,27 @@ const Dashbord = () => {
           </div>
 
           <div>
-            <button className="bg-blue-600 text-white px-3 py-2 text-lg font-semibold flex items-center justify-center gap-1 rounded-lg"><AiFillPlusCircle className="text-2xl font-bold mt-1" /> Create Task</button>
-            
+            <button onClick={()=> setIsClicked(true)} className="bg-blue-600 text-white px-3 py-2 text-lg font-semibold flex items-center justify-center gap-1 rounded-lg"><AiFillPlusCircle className="text-2xl font-bold mt-1" /> Create Task</button>
+            {isClicked && <Modal setIsClicked={setIsClicked}/>}
           </div>
         </div>
+        {/* Name and Image */}
+
+        {/* task section */}
+        <div className="flex items-center justify-between w-full">
+          <div className="w-full p-2 h-[80vh] overflow-hidden">
+            <h1 className="text-lg font-semibold">On Going</h1>
+
+          </div>
+          <div className="w-full p-2 border-l h-[80vh] overflow-hidden">
+            <h1 className="text-lg font-semibold">Panding task</h1>
+
+          </div>
+          <div className="w-full p-2 border-l h-[80vh] overflow-hidden">
+            <h1 className="text-lg font-semibold">Complited task</h1>
+          </div>
+        </div>
+        {/* Task Section */}
       </div>
     </div>
   )
