@@ -4,7 +4,7 @@ const Nav = () => {
     return (
         <div className='flex items-center justify-between p-4 bg-slate-50'>
             <div>
-                <h1 className='text-2xl font-bold'>DailyDo<span className='text-blue-600'>.</span></h1>
+            <h1 className='text-2xl font-bold'> <span className='text-blue-600'>Daily</span>Do<span className='text-blue-600'>.</span></h1>
             </div>
             <div className='text-base flex items-center gap-10 text-gray-600 font-semibold'>
                 <NavLink to='/'>Home</NavLink>

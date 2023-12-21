@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { AppContext } from "../../AppContext/AppContextProvider";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
+import { auth } from "../../firebase.config";
 
 const SignUp = () => {
     const { signUpUser } = useContext(AppContext);
