@@ -4,7 +4,7 @@ import { AppContext } from '../../AppContext/AppContextProvider'
 import toast from 'react-hot-toast';
 
 const SignIn = () => {
-    const { signInUser } = useContext(AppContext);
+    const { signInUser, googleSignIn } = useContext(AppContext);
     const navigate = useNavigate();
 
     const handleSignIn = (e) => {
@@ -25,6 +25,17 @@ const SignIn = () => {
                 toast.error(error)
             })
     }
+
+    // const handleGoogleSignIn = () => {
+    //     googleSignIn()
+    //         .then((result) => {
+    //             toast.success('Sign In Sucessfully')
+    //             navigate('/dashbord')
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
 
     return (
         <div className='flex items-center justify-center h-screen'>

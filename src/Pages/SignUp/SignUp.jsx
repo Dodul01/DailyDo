@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { auth } from "../../firebase.config";
 
 const SignUp = () => {
-    const { signUpUser } = useContext(AppContext);
+    const { signUpUser, googleSignIn } = useContext(AppContext);
     const navigate = useNavigate();
 
     const handleSignUp = (e) => {
@@ -25,7 +25,7 @@ const SignUp = () => {
                     photoURL: imageURL
                 })
                     .then(userAccount => {
-                        toast.success('Account Created Sucessfully');
+                        toast.success('Sign Up Sucessfully');
                         navigate('/dashbord')
                     })
             })
@@ -34,6 +34,18 @@ const SignUp = () => {
                 toast.error(errorMessage)
             })
         e.preventDefault();
+    }
+
+
+    const handleGoogleSignUp = () => {
+        googleSignIn()
+            .then((result) => {
+                toast.success('Sign Up Sucessfully')
+                navigate('/dashbord')
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     return (
@@ -54,7 +66,7 @@ const SignUp = () => {
                     <p className='my-4'>Already have an account? <Link to='/signIn' className='font-semibold underline text-blue-600'>Sign In</Link></p>
                     <hr />
                     <p className='text-gray-600 text-center my-2'>Continue With</p>
-                    <button className='text-lg font-semibold border border-blue-600 rounded-lg py-1 text-blue-600 hover:bg-blue-600 hover:text-white transition-all'>Google</button>
+                    <button onClick={handleGoogleSignUp} className='text-lg font-semibold border border-blue-600 rounded-lg py-1 text-blue-600 hover:bg-blue-600 hover:text-white transition-all'>Google</button>
                 </form>
             </div>
         </div>
