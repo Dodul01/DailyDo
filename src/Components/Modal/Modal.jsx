@@ -12,7 +12,7 @@ const Modal = ({ setIsClicked }) => {
         const email = currentUser.email;
         const task = { ...data, email , status: ''}
 
-        fetch('http://localhost:5000/tasks', {
+        fetch('https://task-management-server-liard-mu.vercel.app/tasks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

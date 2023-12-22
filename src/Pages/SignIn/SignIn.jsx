@@ -51,9 +51,9 @@ const SignIn = () => {
                     <input className='border p-2 w-full my-2 rounded-lg outline-none' name='password' type="password" placeholder='Password' />
                     <input className='bg-blue-600 text-lg rounded-lg py-1 text-white cursor-pointer' type="submit" value='Sign In' />
                     <p className='my-4'>Already have an account? <Link to='/signUp' className='font-semibold underline text-blue-600'>Sign Up</Link></p>
-                    <hr />
+                    {/* <hr />
                     <p className='text-gray-600 text-center my-2'>Continue With</p>
-                    <button className='text-lg font-semibold border border-blue-600 rounded-lg py-1 text-blue-600 hover:bg-blue-600 hover:text-white transition-all'>Google</button>
+                    <button className='text-lg font-semibold border border-blue-600 rounded-lg py-1 text-blue-600 hover:bg-blue-600 hover:text-white transition-all'>Google</button> */}
                 </form>
             </div>
         </div>

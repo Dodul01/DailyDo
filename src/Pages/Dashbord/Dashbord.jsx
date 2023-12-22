@@ -19,14 +19,14 @@ const Dashbord = () => {
   const [isComplite, setIsComplite] = useState(false);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/tasks/${id}`, {
+    fetch(`https://task-management-server-liard-mu.vercel.app/tasks/${id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())
       .then(data => {
         if (data.deletedCount > 0) {
           toast.success('Task delete successfully.')
-          setIsDeleted(true)
+          setIsDeleted(!isDeleted)
         }
       })
   }
@@ -34,7 +34,7 @@ const Dashbord = () => {
   const handleCompliteTask = (task) => {
     task['status'] = 'complete';
 
-    fetch(`http://localhost:5000/tasks/${task._id}`, {
+    fetch(`https://task-management-server-liard-mu.vercel.app/tasks/${task._id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/JSON'
@@ -53,7 +53,7 @@ const Dashbord = () => {
   const handleOnGoingTask = (task) => {
     task['status'] = 'onGoing';
 
-    fetch(`http://localhost:5000/tasks/${task._id}`, {
+    fetch(`https://task-management-server-liard-mu.vercel.app/tasks/${task._id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/JSON'
@@ -71,7 +71,7 @@ const Dashbord = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/tasks?email=${currentUser?.email}`)
+    fetch(`https://task-management-server-liard-mu.vercel.app/tasks?email=${currentUser?.email}`)
       .then((res) => res.json())
       .then((data) => setTasks(data))
   }, [currentUser, isClicked, isDeleted, isComplite])
