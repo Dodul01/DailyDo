@@ -9,6 +9,7 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [updatePage, setUpdatePage] = useState(false);
     const provider = new GoogleAuthProvider()
 
 
@@ -53,7 +54,9 @@ const AppContextProvider = ({ children }) => {
         loading,
         currentUser,
         logOutUser,
-        googleSignIn
+        googleSignIn,
+        updatePage,
+        setUpdatePage
     }
 
     return (

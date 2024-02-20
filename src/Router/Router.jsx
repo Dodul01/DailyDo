@@ -5,6 +5,9 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Dashbord from "../Pages/Dashbord/Dashbord";
 import SignIn from "../Pages/SignIn/SignIn";
 import PrivateRouter from "./PrivateRouter";
+import Projects from "../Pages/Projects/Projects";
+import MyTasks from "../Pages/MyTasks/MyTasks";
+import ProjectsDetails from "../Pages/ProjectsDetails/ProjectsDetails";
 
 const router = createBrowserRouter([
     {
@@ -25,7 +28,21 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashbord',
-                element: <PrivateRouter><Dashbord /></PrivateRouter>
+                element: <PrivateRouter><Dashbord /></PrivateRouter>,
+                children: [
+                    {
+                        path: '/dashbord',
+                        element: <PrivateRouter><Projects /></PrivateRouter>
+                    },
+                    {
+                        path: '/dashbord/myTask',
+                        element: <PrivateRouter><MyTasks /></PrivateRouter>
+                    },
+                    {
+                        path: '/dashbord/projects/:id',
+                        element: <PrivateRouter><ProjectsDetails /></PrivateRouter>
+                    },
+                ]
             }
         ]
     }
