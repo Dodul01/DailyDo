@@ -8,13 +8,19 @@ const ProjectsDetails = () => {
     const { id } = useParams();
     const [project, setProject] = useState([]);
     const [isClicked, setIsClicked] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+
         fetch(`http://localhost:5000/projects/${id}`)
             .then(req => req.json())
             .then(data => setProject(data))
 
-        fetch('`http://localhost:5000/tasks')
+        fetch(`http://localhost:5000/subtask?projectName=${project?.projectName}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+            })
     }, [])
 
     return (
