@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { AppContext } from "../../AppContext/AppContextProvider";
 
 const AddProjectTask = ({ project }) => {
     const [errorMsg, setErrorMsg] = useState('');
+    const { setUpdatePage } = useContext(AppContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,7 +15,7 @@ const AddProjectTask = ({ project }) => {
         const taskDescription = Form.taskDescription.value;
         const task = {
             projectOwner: project.email,
-            projectName: project.projectName,
+            projectName: project._id,
             taskStatus: 'todo',
             taskName, priority, taskDescription
         }
@@ -30,6 +32,7 @@ const AddProjectTask = ({ project }) => {
             .then((data) => {
                 if (data.insertedId) {
                     toast.success('Task Created Sucessfully')
+                    setUpdatePage(true)
                 }
             })
 
@@ -37,7 +40,7 @@ const AddProjectTask = ({ project }) => {
         Form.reset();
     }
 
-   
+
 
     return (
         <div>
@@ -49,7 +52,7 @@ const AddProjectTask = ({ project }) => {
                 </div>
                 <div className='flex flex-col mb-2'>
                     <select className='border p-2 my-1 rounded outline-none' name="priority">
-                        <option value="log">Low</option>
+                        <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
                     </select>

@@ -43,7 +43,7 @@ const Projects = () => {
       {/* All Projects section starts here */}
       <div className="w-full">
         {projects.map((project) => {
-          return <div className="flex justify-between bg-blue-50 border p-2 rounded-lg m-2 w-[99%]">
+          return <div key={project?._id} className="flex justify-between bg-blue-50 border p-2 rounded-lg m-2 w-[99%]">
             <Link className="cursor-pointer" to={`/dashbord/projects/${project?._id}`}>
               <h1 className="text-xl font-bold">{project?.projectName}</h1>
               <p className="text-lg text-gray-600">{project?.projectDescription}</p>
