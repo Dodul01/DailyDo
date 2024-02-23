@@ -35,8 +35,24 @@ const ProjectsDetails = () => {
             })
     }
 
-    const handleCompliteTask = () => {
-        toast('We are working on this feature.')
+    const handleCompliteTask = (task) => {
+        task['taskStatus'] = 'complited';
+
+        setUpdatePage(true);
+
+        fetch(`http://localhost:5000/subtask/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/JSON'
+            },
+            body: JSON.stringify(task)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    toast.success('Task Updated Sucessfully.')
+                }
+            })
     }
 
     const handleDelete = () => {
@@ -155,6 +171,36 @@ const ProjectsDetails = () => {
                     </div>
                     <div className="w-full p-2 h-[74vh] overflow-hidden overflow-y-auto scrollbar-hide">
                         <h1 className="text-lg font-semibold">Complited</h1>
+
+                        <div>
+                            {tasks?.map((task) => {
+                                if (task?.taskStatus === 'complited') {
+                                    return <div className="bg-blue-50 border p-2 rounded-lg m-2 w-[94%]" key={task._id}>
+                                        <div className="flex items-center justify-between gap-1 mb-3">
+                                            <h2 className="text-lg font-semibold">{task?.taskName}</h2>
+                                            <p className="bg-blue-600 text-white w-[100px] text-center rounded-full">{task.priority}</p>
+                                        </div>
+                                        <p className="text-gray-600">{task?.taskDescription}</p>
+                                        <div className="flex items-center mt-3 gap-2">
+                                            <FaRegCalendarAlt className="text-gray-700" />
+                                            <p>Form: {task?.form} - </p>
+                                            <p>To: {task?.to}</p>
+                                        </div>
+                                        <div className="flex items-center justify-between gap-4 mt-4">
+                                            <div className="flex gap-2">
+                                                <button onClick={() => handleOnGoingTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">On Going</button>
+                                                <button onClick={() => handleCompliteTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">Complete</button>
+                                            </div>
+                                            <div className="flex gap-4">
+                                                <FaPen onClick={() => handleTaskUpdate(task)} className="text-lg text-gray-700 cursor-pointer" />
+                                                <FaTrash onClick={() => handleDelete(task?._id)} className="text-lg text-gray-700 cursor-pointer" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
