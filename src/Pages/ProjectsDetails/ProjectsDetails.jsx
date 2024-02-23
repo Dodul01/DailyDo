@@ -55,8 +55,17 @@ const ProjectsDetails = () => {
             })
     }
 
-    const handleDelete = () => {
-        toast('We are working on this feature.')
+    const handleDelete = (taskId) => {
+        fetch(`http://localhost:5000/subtask/${taskId}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    setUpdatePage(true)
+                    toast.success('Task deleted sucessfully.');
+                }
+            })
     }
 
     const handleTaskUpdate = () => {
