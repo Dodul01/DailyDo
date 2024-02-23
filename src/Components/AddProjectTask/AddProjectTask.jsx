@@ -30,9 +30,9 @@ const AddProjectTask = ({ project }) => {
         })
             .then((res) => res.json())
             .then((data) => {
+                setUpdatePage(true)
                 if (data.insertedId) {
                     toast.success('Task Created Sucessfully')
-                    setUpdatePage(true)
                 }
             })
 

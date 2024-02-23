@@ -22,6 +22,8 @@ const AddTaskForm = () => {
         } else {
             setErrorMsg('');
 
+            setUpdatePage(true);
+            
             fetch('http://localhost:5000/projects', {
                 method: 'POST',
                 headers: {
@@ -33,7 +35,7 @@ const AddTaskForm = () => {
                 .then((data) => {
                     if (data.insertedId) {
                         toast.success('Project Created Sucessfully')
-                        setUpdatePage(true)
+                        
                     }
                 })
 
