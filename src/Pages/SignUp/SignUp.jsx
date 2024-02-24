@@ -18,7 +18,7 @@ const SignUp = () => {
         const imageURL = e.target.ImageURL.value;
 
         signUpUser(email, password)
-            .then((userCredential) => {
+            .then((userCredential) => { 
 
                 updateProfile(auth.currentUser, {
                     displayName: name,

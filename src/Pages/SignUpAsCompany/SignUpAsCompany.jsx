@@ -1,4 +1,13 @@
+import { useContext } from "react";
+import { AppContext } from "../../AppContext/AppContextProvider";
+import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
+import { auth } from "../../firebase.config";
+import { useNavigate } from "react-router-dom";
+
 const SignUpAsCompany = () => {
+    const { signUpUser } = useContext(AppContext);
+    const navigate = useNavigate()
 
     const handleJoinAsCompanyForm = (e) => {
         const Form = e.target;
@@ -7,14 +16,41 @@ const SignUpAsCompany = () => {
         const photoURL = Form.image_link.value;
         const email = Form.email_address.value;
         const password = Form.password.value;
-        const phone = Form.floating_phone.value;
+        const phoneNumber = Form.floating_phone.value;
         const userRole = Form.user_role.value;
         const isAdmin = true;
 
-        const user = {displayName, companyName, photoURL, email, password, phone, userRole, isAdmin};
+        const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin };
 
-        console.log(user);
+        signUpUser(email, password)
+            .then((userCredential) => {
+                updateProfile(auth.currentUser, {
+                    displayName: user.displayName,
+                    photoURL: user.photoURL,
+                })
 
+                if (userCredential) {
+                    fetch('http://localhost:5000/users', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                toast.success('Account Created Sucessfully.')
+                                navigate('/dashbord')
+                            }
+                        })
+
+                }
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage);
+            })
         e.preventDefault();
         Form.reset()
     }
