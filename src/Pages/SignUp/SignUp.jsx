@@ -56,7 +56,7 @@ const SignUp = () => {
                 <img className='w-full max-h-[500px] object-cover' src="https://i.ibb.co/TL9QKb3/Safe-pana.png" alt="" />
             </div>
             <div className='flex-1 p-4 flex items-center justify-center'>
-                <form onSubmit={handleSignUp} className='bg-gray-50 flex flex-col p-3 rounded max-w-[450px] w-full shadow'>
+                <form onSubmit={handleSignUp} className='bg-gray-50 flex flex-col p-3 rounded max-w-[450px] w-full border shadow'>
                     <h2 className='text-2xl font-bold text-center my-2'>Sign Up</h2>
                     <input className='border p-2 w-full my-2 rounded-lg outline-none' name='name' type="text" placeholder='Your Name' />
                     <input className='border p-2 w-full my-2 rounded-lg outline-none' name='ImageURL' type="text" placeholder='Your Image URL' />

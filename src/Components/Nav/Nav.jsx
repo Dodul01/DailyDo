@@ -13,8 +13,7 @@ const Nav = () => {
             <div className='text-base flex items-center gap-10 text-gray-600 font-semibold'>
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/dashbord'>Dashbord</NavLink>
-                <NavLink to='/about'>About</NavLink>
-                <NavLink to='/contactUs'>Contact</NavLink>
+                <NavLink to='/joinAsCompany'>Join As Company</NavLink>
             </div>
             <div>
                 {currentUser ?
