@@ -44,7 +44,6 @@ const SignUpAsCompany = () => {
                                 navigate('/dashbord')
                             }
                         })
-
                 }
             })
             .catch((error) => {
@@ -58,8 +57,9 @@ const SignUpAsCompany = () => {
     return (
         <div className='flex items-center justify-between w-full h-screen bg-slate-50'>
             <div className="flex-1">
-                <h1 className='text-center text-5xl font-bold'>Join As Company</h1>
-                <p className="text-center m-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt cum, qui explicabo neque labore aperiam suscipit id quis est debitis nemo ducimus sequi quas optio! Deleniti cupiditate aliquid ipsum ullam.</p>
+                <h1 className='text-3xl font-bold text-center'> <span className='text-blue-600'>Daily</span>Do<span className='text-blue-600'>.</span></h1>
+                <p className='text-center text-gray-600 text-lg font-semibold'>Manage Team Easily</p>
+                <img className='w-full max-h-[500px] object-cover' src="https://i.ibb.co/TL9QKb3/Safe-pana.png" alt="" />
             </div>
 
             <div className="flex-1">
