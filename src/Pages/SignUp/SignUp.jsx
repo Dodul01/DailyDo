@@ -13,35 +13,54 @@ const SignUp = () => {
     const handleSignUp = (e) => {
         const Form = e.target;
 
-        const name = e.target.name.value;
+        e.preventDefault()
+
+        const displayName = e.target.name.value;
         const companyName = Form.companye.value;
-        const imageURL = e.target.ImageURL.value;
+        const photoURL = e.target.ImageURL.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        // const phoneNumber = e.target.phone.value;
-        // const userRole = e.target.role.value;
+        const phoneNumber = e.target.phone.value;
+        const userRole = e.target.role.value;
+        const isAdmin = false;
 
-        // TODO: 
-        // sign up with firebase and store the data to database.
-        // Input ===> Full Name, Select Company, Image URL, Email Address, Password, Phone Number, Your Role
+        const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin };
+
+        // Validation
+        if (!displayName || !companyName || !photoURL || !email || !password || !phoneNumber || !userRole) {
+            return toast.error("Please fill in all fields.");
+        } else if (password.length < 6) {
+            return toast.error("Password must be at least 6 characters long.");
+        }
 
         signUpUser(email, password)
             .then((userCredential) => {
-
                 updateProfile(auth.currentUser, {
-                    displayName: name,
-                    photoURL: imageURL
+                    displayName: user.displayName,
+                    photoURL: user.photoURL,
                 })
-                    .then(userAccount => {
-                        toast.success('Sign Up Sucessfully');
-                        navigate('/dashbord')
+
+                if (userCredential) {
+                    fetch('http://localhost:5000/normalUser', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
                     })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                toast.success('Account Created Sucessfully.')
+                                navigate('/dashbord')
+                            }
+                        })
+                }
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 toast.error(errorMessage)
             })
-        e.preventDefault();
     }
 
 
@@ -59,7 +78,10 @@ const SignUp = () => {
     useEffect(() => {
         fetch('http://localhost:5000/companyes')
             .then(res => res.json())
-            .then(data => setCompanyes(data))
+            .then(data => {
+                setCompanyes(data);
+                console.log(data);
+            })
     }, [])
 
     return (
@@ -80,7 +102,7 @@ const SignUp = () => {
                         <option value="null">Select your company</option>
                         {
                             companyes.map((company) => {
-                                return <option value={`${company?.companyName}`}>{company?.companyName}</option>
+                                return <option key={company?._id} value={`${company?.companyName}`}>{company?.companyName}</option>
                             })
                         }
                     </select>
