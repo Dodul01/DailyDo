@@ -20,16 +20,18 @@ const SignUpAsCompany = () => {
         const userRole = Form.user_role.value;
         const isAdmin = true;
 
-        const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin };
+        // const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin };
 
         signUpUser(email, password)
             .then((userCredential) => {
                 updateProfile(auth.currentUser, {
-                    displayName: user.displayName,
-                    photoURL: user.photoURL,
+                    displayName: displayName,
+                    photoURL: photoURL,
                 })
 
                 if (userCredential) {
+                    const user = { displayName, companyName, photoURL, email: userCredential.user.email, phoneNumber, userRole, isAdmin };
+
                     fetch('http://localhost:5000/users', {
                         method: 'POST',
                         headers: {

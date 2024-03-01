@@ -16,12 +16,10 @@ const SignIn = () => {
 
         signInUser(email, password)
             .then((userCredential) => {
-                console.log(userCredential.user);
                 toast.success('Log In Succesfully.')
                 navigate('/dashbord')
             })
             .catch((error) => {
-                console.log(error);
                 toast.error(error)
             })
     }

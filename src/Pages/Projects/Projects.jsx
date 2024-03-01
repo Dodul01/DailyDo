@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Modal from "../../Components/Modal/Modal";
 import { AiFillPlusCircle } from "react-icons/ai";
 import AddTaskForm from "../../Components/AddTaskForm/AddTaskForm";
+import toast from "react-hot-toast";
 
 const Projects = () => {
   const { currentUser, updatePage } = useContext(AppContext);
@@ -21,14 +22,33 @@ const Projects = () => {
 
   const handleAddPepole = (project) => {
     setIsModalOpen(true)
+    const email = project.email;
+
+   
+
+    // console.log(taskOwner);
+    /*
+    * [DONE] First load only the company employee 
+    * Find all the employee who work on the task owner compay
+    * then remove the task owner from the members team
+    *  
+    */
+
 
 
     fetch('http://localhost:5000/allUsers')
       .then(req => req.json())
       .then(res => {
-        setMembers(res);
+        const taskOwner = res.find(member => member.email == email);
+        const employees = res.filter(employee => employee.companyName == taskOwner.companyName);
+        setMembers(employees);
       })
   }
+
+  const handleAddToTask = () =>{
+    toast.success('We Are working on this feature')
+  }
+
 
   useEffect(() => {
     fetch(`http://localhost:5000/projects?email=${currentUser?.email}`)
@@ -90,7 +110,7 @@ const Projects = () => {
               <h1 className="text-2xl font-semibold mb-3">All Members</h1>
 
               <ul className="max-w-full divide-y divide-gray-200">
-                {members.map((member) => <li className="pb-3 sm:pb-4">
+                {members?.map((member, i) => <li key={i} className="pb-3 sm:pb-4">
                   <div className="flex items-center space-x-4 rtl:space-x-reverse">
                     <div className="flex-shrink-0">
                       <img className="w-8 h-8 rounded-full" src={member?.photoURL} alt="user_image" />
@@ -108,7 +128,7 @@ const Projects = () => {
                       </p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                      <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Project Details</button>
+                      <button onClick={handleAddToTask} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Add</button>
                     </div>
                   </div>
                 </li>
