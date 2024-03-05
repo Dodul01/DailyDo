@@ -32,7 +32,6 @@ const Projects = () => {
     */
 
 
-
     fetch('http://localhost:5000/allUsers')
       .then(req => req.json())
       .then(res => {
