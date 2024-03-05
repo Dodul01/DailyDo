@@ -9,6 +9,7 @@ import Projects from "../Pages/Projects/Projects";
 import MyTasks from "../Pages/MyTasks/MyTasks";
 import ProjectsDetails from "../Pages/ProjectsDetails/ProjectsDetails";
 import SignUpAsCompany from "../Pages/SignUpAsCompany/SignUpAsCompany";
+import Messanger from "../Pages/Messagener/Messanger";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
                         path: '/dashbord/projects/:id',
                         element: <PrivateRouter><ProjectsDetails /></PrivateRouter>
                     },
+                    {
+                        path: '/dashbord/chat',
+                        element: <PrivateRouter><Messanger /></PrivateRouter>
+                    }
                 ]
             }
         ]

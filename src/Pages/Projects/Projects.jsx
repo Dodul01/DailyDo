@@ -23,13 +23,10 @@ const Projects = () => {
   const handleAddPepole = (project) => {
     setIsModalOpen(true)
     const email = project.email;
-
    
-
-    // console.log(taskOwner);
     /*
     * [DONE] First load only the company employee 
-    * Find all the employee who work on the task owner compay
+    * [Done] Find all the employee who work on the task owner compay
     * then remove the task owner from the members team
     *  
     */
@@ -45,7 +42,7 @@ const Projects = () => {
       })
   }
 
-  const handleAddToTask = () =>{
+const handleAddToTask = () =>{  
     toast.success('We Are working on this feature')
   }
 
