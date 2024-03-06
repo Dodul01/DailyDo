@@ -11,6 +11,7 @@ import ProjectsDetails from "../Pages/ProjectsDetails/ProjectsDetails";
 import SignUpAsCompany from "../Pages/SignUpAsCompany/SignUpAsCompany";
 import Messanger from "../Pages/Messagener/Messanger";
 import Team from "../Pages/Team/Team";
+import Error from "../Pages/Error/Error";
 
 const router = createBrowserRouter([
     {
@@ -59,7 +60,8 @@ const router = createBrowserRouter([
                     }
                 ]
             }
-        ]
+        ],
+        errorElement: <Error />
     }
 ])
 export default router;

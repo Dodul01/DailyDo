@@ -30,9 +30,9 @@ const Team = () => {
     return (
         <div>
             <h1 className="text-2xl font-semibold mb-3">You Team</h1>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-5">
                 {members.map((member, index) => {
-                    return <div className="relative h-[250px] w-[200px] hover: cursor-pointer overflow-hidden rounded-tl-3xl rounded-br-3xl border border-b-0 shadow-sm" key={member._id}>
+                    return <div className="relative h-[250px] w-[200px] overflow-hidden rounded-tl-3xl rounded-br-3xl border border-b-0 shadow-sm" key={member._id}>
                         <img className="h-[250px] w-[200px] object-cover bg-center" src={member?.photoURL} alt="" />
 
                         <button onClick={() => toggleDropdown(index)} className="absolute top-2 right-2 inline-block text-black hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5">
@@ -56,8 +56,11 @@ const Team = () => {
                         )}
 
 
-                        <div className="absolute bottom-0 left-0 p-2 w-full text-black bg-gradient-to-t from-white">
-                            <h1 className="text-xl">{member?.displayName}</h1>
+                        <div className="absolute top-48 transition-all hover:top-28 left-0  h-[160px] p-2 w-full text-black bg-white rounded-l-3xl">
+                            <h1 className="text-lg font-semibold">{member?.displayName}</h1>
+                            <p>{member?.email}</p>
+                            <p>{member?.phoneNumber}</p>
+                            <p>{member?.userRole}</p>
                         </div>
                     </div>
                 })}

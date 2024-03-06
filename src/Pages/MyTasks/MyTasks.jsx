@@ -1,5 +1,6 @@
 import { AiFillPlusCircle } from 'react-icons/ai';
 import mountain from '../../assets/mountain.jpg';
+import todoGif from '../../assets/todo.gif';
 
 const MyTasks = () => {
     return (
@@ -14,8 +15,9 @@ const MyTasks = () => {
                 </div>
             </div>
             
-            <div>
-
+            <div className='flex items-center justify-center flex-col'>
+                <img className='w-[400px] h-auto' src={todoGif} alt="todogif" />
+                <h1 className='text-2xl font-semibold text-center'>This feature will be added soon</h1>
             </div>
         </div>
     )
