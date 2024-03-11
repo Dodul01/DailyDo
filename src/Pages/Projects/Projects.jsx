@@ -23,7 +23,7 @@ const Projects = () => {
   const handleAddPepole = (project) => {
     setIsModalOpen(true)
     const email = project.email;
-   
+
     /*
     * [DONE] First load only the company employee 
     * [Done] Find all the employee who work on the task owner compay
@@ -41,7 +41,7 @@ const Projects = () => {
       })
   }
 
-const handleAddToTask = () =>{  
+  const handleAddToTask = () => {
     toast.success('We Are working on this feature')
   }
 
@@ -49,7 +49,9 @@ const handleAddToTask = () =>{
   useEffect(() => {
     fetch(`http://localhost:5000/projects?email=${currentUser?.email}`)
       .then(req => req.json())
-      .then(data => setProjects(data))
+      .then(data => {
+        setProjects(data)
+      })
   }, [updatePage])
 
   return (

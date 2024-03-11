@@ -19,8 +19,7 @@ const SignUpAsCompany = () => {
         const phoneNumber = Form.floating_phone.value;
         const userRole = Form.user_role.value;
         const isAdmin = true;
-
-        // const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin };
+        const isVerifyed = true;
 
         signUpUser(email, password)
             .then((userCredential) => {
@@ -30,7 +29,7 @@ const SignUpAsCompany = () => {
                 })
 
                 if (userCredential) {
-                    const user = { displayName, companyName, photoURL, email: userCredential.user.email, phoneNumber, userRole, isAdmin };
+                    const user = { displayName, companyName, photoURL, email: userCredential.user.email, phoneNumber, userRole, isAdmin, isVerifyed };
 
                     fetch('http://localhost:5000/users', {
                         method: 'POST',

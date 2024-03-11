@@ -12,6 +12,7 @@ import SignUpAsCompany from "../Pages/SignUpAsCompany/SignUpAsCompany";
 import Messanger from "../Pages/Messagener/Messanger";
 import Team from "../Pages/Team/Team";
 import Error from "../Pages/Error/Error";
+import WaitingPage from "../Pages/WaitingPage/WaitingPage";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: '/joinAsCompany',
                 element: <SignUpAsCompany />
+            },
+            {
+                path: '/waitingRoom',
+                element: <WaitingPage />
             },
             {
                 path: '/dashbord',

@@ -11,6 +11,7 @@ import SideNav from "../../Components/SideNav/SideNav";
 import { Outlet } from 'react-router-dom'
 
 import { Link } from "react-router-dom";
+import WaitingPage from "../WaitingPage/WaitingPage";
 
 
 
@@ -20,7 +21,8 @@ const Dashbord = () => {
   const [tasks, setTasks] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isComplite, setIsComplite] = useState(false);
-  
+  const [isVerifyed, setIsVerifyed] = useState(false);
+
   const handleDelete = (id) => {
     fetch(`https://task-management-server-liard-mu.vercel.app/tasks/${id}`, {
       method: 'DELETE'
@@ -73,18 +75,30 @@ const Dashbord = () => {
   }
 
 
+  // useEffect(() => {
+  //   fetch(`https://task-management-server-liard-mu.vercel.app/tasks?email=${currentUser?.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setTasks(data))
+  // }, [currentUser, isClicked, isDeleted, isComplite])
+
   useEffect(() => {
-    fetch(`https://task-management-server-liard-mu.vercel.app/tasks?email=${currentUser?.email}`)
+    fetch(`http://localhost:5000/user?email=${currentUser?.email}`)
       .then((res) => res.json())
-      .then((data) => setTasks(data))
-  }, [currentUser, isClicked, isDeleted, isComplite])
+      .then((data) => setIsVerifyed(data[0].isVerifyed))
+  }, [currentUser])
 
   return (
     <div className='flex max-w-screen-2xl mx-auto rounded border min-h-screen'>
-      <SideNav />
+      {isVerifyed ?
+           <SideNav /> :
+          ''
+        }
 
       <div className='flex-1 p-2'>
-        <Outlet />
+        {isVerifyed ?
+          <Outlet /> :
+          <WaitingPage />
+        }
 
         <div>
           {/* task section */}

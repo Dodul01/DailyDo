@@ -23,8 +23,9 @@ const SignUp = () => {
         const phoneNumber = e.target.phone.value;
         const userRole = e.target.role.value;
         const isAdmin = false;
+        const isVerifyed = false;
 
-        const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin };
+        const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin , isVerifyed};
 
         // Validation
         if (!displayName || !companyName || !photoURL || !email || !password || !phoneNumber || !userRole) {
