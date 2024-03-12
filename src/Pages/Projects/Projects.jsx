@@ -50,20 +50,31 @@ const Projects = () => {
 
 
   useEffect(() => {
+    // Fetch projects with specific email filter
     fetch(`http://localhost:5000/projects?email=${currentUser?.email}`)
       .then(req => req.json())
-      .then(data => {
-        setProjects(data)
-      })
-
-
+      .then(filteredData => {
+        setProjects(existingProjects => {
+          // Filter out existing projects that are also present in the filteredData
+          const existingIds = existingProjects.map(project => project._id);
+          const newProjects = filteredData.filter(project => !existingIds.includes(project._id));
+          return [...existingProjects, ...newProjects];
+        });
+      });
+  
+    // Fetch all projects
     fetch('http://localhost:5000/projects')
       .then(res => res.json())
       .then(data => {
-        setProjects(projects => projects.concat(data));
-      })
-
-  }, [updatePage])
+        setProjects(existingProjects => {
+          // Filter out existing projects that are also present in the data
+          const existingIds = existingProjects.map(project => project._id);
+          const newProjects = data.filter(project => !existingIds.includes(project._id));
+          return [...existingProjects, ...newProjects];
+        });
+      });
+  }, [currentUser?.email, updatePage]);
+  
 
   return (
     <div>
