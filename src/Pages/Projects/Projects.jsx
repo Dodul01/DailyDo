@@ -24,13 +24,6 @@ const Projects = () => {
     setIsModalOpen(true)
     const email = project.email;
 
-    /*
-    * [DONE] First load only the company employee 
-    * [Done] Find all the employee who work on the task owner compay
-    * then remove the task owner from the members team
-    *  
-    */
-
 
     fetch('http://localhost:5000/allUsers')
       .then(req => req.json())

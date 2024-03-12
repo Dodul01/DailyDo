@@ -84,21 +84,26 @@ const Dashbord = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/user?email=${currentUser?.email}`)
       .then((res) => res.json())
-      .then((data) => setIsVerifyed(data[0].isVerifyed))
+      .then((data) => {
+        setIsVerifyed(data[0]?.isVerifyed)
+      })
+
+    /**
+     * dont use mozammelHoqueDodul@gmail.com
+     * use mozammelhoquedodul@gmail.com
+     * */
+
   }, [currentUser])
 
   return (
     <div className='flex max-w-screen-2xl mx-auto rounded border min-h-screen'>
       {isVerifyed ?
-           <SideNav /> :
-          ''
-        }
+        <SideNav /> :
+        ''
+      }
 
       <div className='flex-1 p-2'>
-        {isVerifyed ?
-          <Outlet /> :
-          <WaitingPage />
-        }
+        {isVerifyed === true ? <Outlet /> : <WaitingPage />}
 
         <div>
           {/* task section */}

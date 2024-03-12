@@ -35,6 +35,10 @@ const SideNav = () => {
                     <AiOutlineTeam />
                     <h3>My Team</h3>
                 </Link>
+                <Link to='/dashbord/joining' className="flex gap-2 items-center text-lg font-semibold cursor-pointer p-2 mx-1 rounded-lg hover:bg-blue-600 hover:text-white">
+                    <AiOutlineTeam />
+                    <h3>Joining Request</h3>
+                </Link>
                 <Link to='/dashbord/onGoingProject' className="flex gap-2 items-center text-lg font-semibold cursor-pointer p-2 mx-1 rounded-lg hover:bg-blue-600 hover:text-white">
                     <GoProjectSymlink />
                     <h3>On Going Project</h3>

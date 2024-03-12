@@ -13,6 +13,7 @@ import Messanger from "../Pages/Messagener/Messanger";
 import Team from "../Pages/Team/Team";
 import Error from "../Pages/Error/Error";
 import WaitingPage from "../Pages/WaitingPage/WaitingPage";
+import JoiningRequest from "../Pages/JoiningRequest/JoiningRequest";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
                     {
                         path: '/dashbord/team',
                         element: <PrivateRouter><Team /></PrivateRouter>
+                    },
+                    {
+                        path: '/dashbord/joining',
+                        element: <PrivateRouter><JoiningRequest /></PrivateRouter>
                     }
                 ]
             }
