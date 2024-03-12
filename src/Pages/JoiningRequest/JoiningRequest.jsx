@@ -37,7 +37,6 @@ const JoiningRequest = () => {
                 if (admin.isAdmin) {
                     const members = res.filter(employee => employee.companyName == admin.companyName);
                     setEmployees(members);
-                    console.log(members);
                 }
             })
     }, [])

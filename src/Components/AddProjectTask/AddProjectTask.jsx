@@ -13,6 +13,7 @@ const AddProjectTask = ({ project }) => {
         const taskName = Form.taskName.value;
         const priority = Form.priority.value;
         const taskDescription = Form.taskDescription.value;
+        
         const task = {
             projectOwner: project.email,
             projectName: project._id,

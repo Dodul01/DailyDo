@@ -10,7 +10,7 @@ const AddTaskForm = () => {
         const Form = e.target;
         const projectName = Form.projectName.value;
         const projectDescription = Form.projectDescription.value;
-        const projectInfo = { projectName, projectDescription, email: currentUser?.email }
+        const projectInfo = { projectName, projectDescription, access: [currentUser?.email], email: currentUser?.email }
 
         e.preventDefault();
 
