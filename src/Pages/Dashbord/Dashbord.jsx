@@ -1,24 +1,13 @@
-import { IoHome } from "react-icons/io5";
-import { LuLayoutGrid } from "react-icons/lu";
-import { RxAvatar } from "react-icons/rx";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppContext/AppContextProvider";
-import { AiFillPlusCircle } from "react-icons/ai";
-import Modal from "../../Components/Modal/Modal";
-import { FaRegCalendarAlt, FaTrash, FaPen, FaPowerOff } from "react-icons/fa";
 import toast from "react-hot-toast";
 import SideNav from "../../Components/SideNav/SideNav";
 import { Outlet } from 'react-router-dom'
-
-import { Link } from "react-router-dom";
 import WaitingPage from "../WaitingPage/WaitingPage";
-
 
 
 const Dashbord = () => {
   const { currentUser, logOutUser } = useContext(AppContext);
-  const [isClicked, setIsClicked] = useState(false);
-  const [tasks, setTasks] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isComplite, setIsComplite] = useState(false);
   const [isVerifyed, setIsVerifyed] = useState(false);
