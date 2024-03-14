@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import Modal from '../../Components/Modal/Modal';
 import toast from 'react-hot-toast';
 import { AppContext } from '../../AppContext/AppContextProvider';
+import { FaTrash } from 'react-icons/fa';
 
 const MyTasks = () => {
     const [isClicked, setIsClicked] = useState(false);
@@ -37,11 +38,26 @@ const MyTasks = () => {
         Form.reset();
     }
 
+    const handleDeleteTask = (id) => {
+        fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('Task delete successfully.')
+                    setUpdatePage(!updatePage)
+                }
+            })
+    }
+
     useEffect(() => {
         fetch(`http://localhost:5000/tasks?email=${currentUser?.email}`)
             .then((res) => res.json())
             .then((data) => setTodos(data))
     }, [updatePage, isClicked])
+
+    console.log(todos);
 
     return (
         <div>
@@ -72,8 +88,13 @@ const MyTasks = () => {
 
             </Modal> : ''}
 
-            <div className='flex items-center justify-center flex-col'>
-                <h1 className='text-3xl font-semibold'>{todos.length}</h1>
+            <div className='my-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2'>
+                {todos?.map((todo) => <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{todo?.title}</h5>
+                    <p class="font-normal text-gray-700">{todo?.description}</p>
+                    <button onClick={ ()=> handleDeleteTask(todo?._id)} className='mt-4'><FaTrash /></button>
+                </div>
+                )}
             </div>
         </div>
     )
