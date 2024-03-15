@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppContext/AppContextProvider";
 import { Link } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
@@ -10,7 +10,18 @@ import { GoProjectSymlink } from "react-icons/go";
 import { CgProfile } from "react-icons/cg";
 
 const SideNav = () => {
-    const { logOutUser } = useContext(AppContext);
+    const { logOutUser, currentUser } = useContext(AppContext);
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        fetch('http://localhost:5000/allUsers')
+            .then(req => req.json())
+            .then(res => {
+                const user = res.find(member => member.email == currentUser.email)
+                setUser(user);
+            })
+    })
+
 
     return (
         <div className='w-[250px] bg-slate-50 border-r-2'>
@@ -35,10 +46,12 @@ const SideNav = () => {
                     <AiOutlineTeam />
                     <h3>My Team</h3>
                 </Link>
-                <Link to='/dashbord/joining' className="flex gap-2 items-center text-lg font-semibold cursor-pointer p-2 mx-1 rounded-lg hover:bg-blue-600 hover:text-white">
-                    <AiOutlineTeam />
-                    <h3>Joining Request</h3>
-                </Link>
+                {user?.isAdmin &&
+                    <Link to='/dashbord/joining' className="flex gap-2 items-center text-lg font-semibold cursor-pointer p-2 mx-1 rounded-lg hover:bg-blue-600 hover:text-white">
+                        <AiOutlineTeam />
+                        <h3>Joining Request</h3>
+                    </Link>
+                }
                 <Link to='/dashbord/onGoingProject' className="flex gap-2 items-center text-lg font-semibold cursor-pointer p-2 mx-1 rounded-lg hover:bg-blue-600 hover:text-white">
                     <GoProjectSymlink />
                     <h3>On Going Project</h3>

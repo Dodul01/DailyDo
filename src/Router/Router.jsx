@@ -14,6 +14,9 @@ import Team from "../Pages/Team/Team";
 import Error from "../Pages/Error/Error";
 import WaitingPage from "../Pages/WaitingPage/WaitingPage";
 import JoiningRequest from "../Pages/JoiningRequest/JoiningRequest";
+import Profile from "../Pages/Profile/Profile";
+import Ongoing from "../Pages/Ongoing/Ongoing";
+import Completed from "../Pages/Completed/Completed";
 
 const router = createBrowserRouter([
     {
@@ -67,6 +70,18 @@ const router = createBrowserRouter([
                     {
                         path: '/dashbord/joining',
                         element: <PrivateRouter><JoiningRequest /></PrivateRouter>
+                    },
+                    {
+                        path: '/dashbord/profile',
+                        element: <PrivateRouter><Profile /></PrivateRouter>
+                    },
+                    {
+                        path: '/dashbord/onGoingProject',
+                        element: <PrivateRouter><Ongoing /></PrivateRouter>
+                    },
+                    {
+                        path: '/dashbord/complitedProject',
+                        element: <PrivateRouter><Completed /></PrivateRouter>
                     }
                 ]
             }

@@ -92,14 +92,28 @@ const ProjectsDetails = () => {
 
     return (
         <div>
-            <div className='flex justify-between border-b-2 pb-4'>
+            <div className='flex justify-between'>
                 <div>
-                    <h1 className='text-3xl font-bold mx-3 my-5'>{project?.projectName}</h1>
-                    <p className='mx-3'>{project?.projectDescription}</p>
+                    <h1 className='text-3xl font-bold my-3'>{project?.projectName}</h1>
+                    <p className=''>{project?.projectDescription}</p>
                 </div>
                 <div className='my-4'>
                     <span onClick={() => setIsClicked(true)} className="bg-blue-600 cursor-pointer text-white px-3 py-2 text-lg font-semibold flex items-center justify-center gap-1 rounded-lg">Create Task<AiFillPlusCircle className='text-4xl bg-blue-600' /></span>
                 </div>
+            </div>
+
+            <div className='pb-4  mt-5 flex gap-1 flex-wrap'>
+                {project?.access?.map(member => (
+                    <div className='flex border border-blue-600 rounded-lg p-1' key={member?.email}>
+                        <div>
+                            <img className="w-10 h-10 object-cover rounded-lg" src={member?.photoURL} alt={member?.displayName} />
+                        </div>
+                        <div className='ml-1'>
+                            <p className='text-sm font-medium'>{member?.displayName}</p>
+                            <p className='text-sm font-medium'>{member?.email}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
 
             {isClicked && <Modal setIsClicked={setIsClicked}>
@@ -108,9 +122,9 @@ const ProjectsDetails = () => {
 
 
             {/*  */}
-            <div>
+            <div className='border-t-2 pb-4'>
                 <div className="flex items-center justify-between w-full">
-                    <div className="w-full p-2 h-[74vh] overflow-hidden overflow-y-auto scrollbar-hide border-r-2">
+                    <div className="w-full p-2 h-[67vh] overflow-hidden overflow-y-auto scrollbar-hide border-r-2">
                         <h1 className="text-lg font-semibold">Todo</h1>
                         {/* Project Task Show Here */}
                         <div>
@@ -145,7 +159,7 @@ const ProjectsDetails = () => {
                         {/* Project Task Show Here */}
 
                     </div>
-                    <div className="w-full p-2 h-[74vh] overflow-hidden overflow-y-auto scrollbar-hide border-r-2">
+                    <div className="w-full p-2 h-[67vh] overflow-hidden overflow-y-auto scrollbar-hide border-r-2">
                         <h1 className="text-lg font-semibold">Ongoing</h1>
 
                         <div>
@@ -178,7 +192,7 @@ const ProjectsDetails = () => {
                             )}
                         </div>
                     </div>
-                    <div className="w-full p-2 h-[74vh] overflow-hidden overflow-y-auto scrollbar-hide">
+                    <div className="w-full p-2 h-[67vh] overflow-hidden overflow-y-auto scrollbar-hide">
                         <h1 className="text-lg font-semibold">Complited</h1>
 
                         <div>

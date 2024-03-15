@@ -10,7 +10,7 @@ const AddTaskForm = () => {
         const Form = e.target;
         const projectName = Form.projectName.value;
         const projectDescription = Form.projectDescription.value;
-        const projectInfo = { projectName, projectDescription, access: [currentUser?.email], email: currentUser?.email }
+        const projectInfo = { projectName, projectDescription, status: 'ongoing',  access: [{ email: currentUser?.email, displayName: currentUser?.displayName, photoURL: currentUser?.photoURL }], email: currentUser?.email }
 
         e.preventDefault();
 
@@ -23,7 +23,7 @@ const AddTaskForm = () => {
             setErrorMsg('');
 
             setUpdatePage(true);
-            
+
             fetch('http://localhost:5000/projects', {
                 method: 'POST',
                 headers: {
@@ -35,7 +35,6 @@ const AddTaskForm = () => {
                 .then((data) => {
                     if (data.insertedId) {
                         toast.success('Project Created Sucessfully')
-                        
                     }
                 })
 
