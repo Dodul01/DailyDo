@@ -57,8 +57,6 @@ const MyTasks = () => {
             .then((data) => setTodos(data))
     }, [updatePage, isClicked])
 
-    console.log(todos);
-
     return (
         <div>
             <div className='relative'>
@@ -92,7 +90,7 @@ const MyTasks = () => {
                 {todos?.map((todo) => <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{todo?.title}</h5>
                     <p class="font-normal text-gray-700">{todo?.description}</p>
-                    <button onClick={ ()=> handleDeleteTask(todo?._id)} className='mt-4'><FaTrash /></button>
+                    <button onClick={() => handleDeleteTask(todo?._id)} className='mt-4'><FaTrash /></button>
                 </div>
                 )}
             </div>

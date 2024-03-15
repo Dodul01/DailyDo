@@ -85,123 +85,15 @@ const Dashbord = () => {
   }, [currentUser])
 
   return (
-    <div className='flex max-w-screen-2xl mx-auto rounded border min-h-screen'>
+    <div className='flex lg:flex-row md:flex-col max-w-screen-2xl mx-auto rounded border min-h-screen'>
       {isVerifyed ?
-        <SideNav /> :
+        <SideNav />
+        :
         ''
       }
 
       <div className='flex-1 p-2'>
         {isVerifyed === true ? <Outlet /> : <WaitingPage />}
-
-        <div>
-          {/* task section */}
-          {/* <div className="flex items-center justify-between w-full"> */}
-          {/* <div className="w-full p-2 h-[80vh] overflow-hidden overflow-y-auto scrollbar-hide"> */}
-          {/* <h1 className="text-lg font-semibold">Todo Task</h1> */}
-          {/* Todo Task */}
-          {/* {tasks.map(task => {
-
-              if (task.status !== '') {
-                return ''
-              }
-
-              return <div className="bg-blue-50 border p-2 rounded-lg m-2 w-[94%]" key={task._id}>
-                <div className="flex items-center justify-between gap-1 mb-3">
-                  <h2 className="text-lg font-semibold">{task?.title}</h2>
-                  <p className="bg-blue-600 text-white w-[100px] text-center rounded-full">{task.priority}</p>
-                </div>
-                <p className="text-gray-600">{task.description}</p>
-                <div className="flex items-center mt-3 gap-2">
-                  <FaRegCalendarAlt className="text-gray-700" />
-                  <p>Form: {task.form} - </p>
-                  <p>To: {task.to}</p>
-                </div>
-                <div className="flex items-center justify-between gap-4 mt-4">
-                  <div className="flex gap-2">
-                    <button onClick={() => handleOnGoingTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">On Going</button>
-                    <button onClick={() => handleCompliteTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">Complete</button>
-                  </div>
-                  <div className="flex gap-4">
-                    <FaPen className="text-lg text-gray-700 cursor-pointer" />
-                    <FaTrash onClick={() => handleDelete(task._id)} className="text-lg text-gray-700 cursor-pointer" />
-                  </div>
-                </div>
-              </div>
-            })} */}
-          {/* </div> */}
-          {/* <div className="w-full p-2 border-l h-[80vh] overflow-hidden overflow-y-auto scrollbar-hide"> */}
-          {/* <h1 className="text-lg font-semibold">On Going task</h1> */}
-          {/* On Going Task */}
-          {/* {tasks.map(task => {
-
-              if (task.status !== 'onGoing') {
-                return ''
-              }
-
-              return <div className="bg-blue-50 border p-2 rounded-lg m-2 w-[94%]" key={task._id}>
-                <div className="flex items-center justify-between gap-1 mb-3">
-                  <h2 className="text-lg font-semibold">{task?.title}</h2>
-                  <p className="bg-blue-600 text-white w-[100px] text-center rounded-full">{task.priority}</p>
-                </div>
-                <p className="text-gray-600">{task.description}</p>
-                <div className="flex items-center mt-3 gap-2">
-                  <FaRegCalendarAlt className="text-gray-700" />
-                  <p>Form: {task.form} - </p>
-                  <p>To: {task.to}</p>
-                </div>
-                <div className="flex items-center justify-between gap-4 mt-4">
-                  <div className="flex gap-2">
-                    <button onClick={() => handleOnGoingTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">On Going</button>
-                    <button onClick={() => handleCompliteTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">Complete</button>
-                  </div>
-                  <div className="flex gap-4">
-                    <FaPen className="text-lg text-gray-700 cursor-pointer" />
-                    <FaTrash onClick={() => handleDelete(task._id)} className="text-lg text-gray-700 cursor-pointer" />
-                  </div>
-                </div>
-              </div>
-            })} */}
-          {/* </div> */}
-          {/* <div className="w-full p-2 border-l h-[80vh] overflow-hidden overflow-y-auto scrollbar-hide"> */}
-          {/* <h1 className="text-lg font-semibold">Complete task</h1> */}
-          {/* Complited Task */}
-
-          {/* {tasks.map(task => {
-
-              if (task.status !== 'complete') {
-                return ''
-              }
-
-              return <div className="bg-blue-50 border p-2 rounded-lg m-2 w-[94%]" key={task._id}>
-                <div className="flex items-center justify-between gap-1 mb-3">
-                  <h2 className="text-lg font-semibold">{task?.title}</h2>
-                  <p className="bg-blue-600 text-white w-[100px] text-center rounded-full">{task.priority}</p>
-                </div>
-                <p className="text-gray-600">{task.description}</p>
-                <div className="flex items-center mt-3 gap-2">
-                  <FaRegCalendarAlt className="text-gray-700" />
-                  <p>Form: {task.form} - </p>
-                  <p>To: {task.to}</p>
-                </div>
-                <div className="flex items-center justify-between gap-4 mt-4">
-                  <div className="flex gap-2">
-                    <button onClick={() => handleOnGoingTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">On Going</button>
-                    <button onClick={() => handleCompliteTask(task)} className="bg-blue-500 px-2 py-1 text-white rounded-lg">Complete</button>
-                  </div>
-                  <div className="flex gap-4">
-                    <FaPen className="text-lg text-gray-700 cursor-pointer" />
-                    <FaTrash onClick={() => handleDelete(task._id)} className="text-lg text-gray-700 cursor-pointer" />
-                  </div>
-                </div>
-              </div>
-            })} */}
-
-
-          {/* </div> */}
-          {/* </div> */}
-          {/* Task Section */}
-        </div>
       </div>
     </div>
   )
