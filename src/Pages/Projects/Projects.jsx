@@ -13,27 +13,13 @@ const Projects = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [members, setMembers] = useState([]);
   const [dropdownStates, setDropdownStates] = useState(Array(projects.length).fill(false));
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const toggleDropdown = (index) => {
     const newDropdownStates = [...dropdownStates];
     newDropdownStates[index] = !newDropdownStates[index];
     setDropdownStates(newDropdownStates);
   };
-
-  // const handleAddPepole = (project) => {
-  //   setIsModalOpen(true)
-  //   const email = project.email;
-
-  //   fetch('http://localhost:5000/allUsers')
-  //     .then(req => req.json())
-  //     .then(res => {
-  //       const taskOwner = res.find(member => member.email == email);
-  //       const employees = res.filter(employee => employee.companyName == taskOwner.companyName);
-  //       setMembers(employees);
-  //     })
-  // }
-
-  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleAddPepole = (project) => {
     setSelectedProject(project); // Set the selected project
@@ -50,7 +36,6 @@ const Projects = () => {
         console.error("Error fetching members data:", error);
       });
   }
-
 
 
   const handleAddToTask = (project, email, displayName, photoURL, index) => {
@@ -98,7 +83,12 @@ const Projects = () => {
       body: JSON.stringify(project)
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        if(data.modifiedCount > 0){
+          toast.success('Project mark as completed.')
+          setUpdatePage(!updatePage)
+        }
+      })
   }
 
   useEffect(() => {
@@ -149,7 +139,7 @@ const Projects = () => {
       </div>
       {/* Name and image section end here */}
 
-      <h1 className='text-3xl font-bold mx-3 my-5'>My Projects</h1>
+      <h1 className='text-3xl font-bold  my-5'>My Projects</h1>
 
       <div className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
         {projects.map((project, index) => {
