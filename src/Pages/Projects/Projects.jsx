@@ -7,7 +7,7 @@ import AddTaskForm from "../../Components/AddTaskForm/AddTaskForm";
 import toast from "react-hot-toast";
 
 const Projects = () => {
-  const { currentUser, updatePage } = useContext(AppContext);
+  const { currentUser, updatePage, setUpdatePage } = useContext(AppContext);
   const [projects, setProjects] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -20,23 +20,41 @@ const Projects = () => {
     setDropdownStates(newDropdownStates);
   };
 
+  // const handleAddPepole = (project) => {
+  //   setIsModalOpen(true)
+  //   const email = project.email;
+
+  //   fetch('http://localhost:5000/allUsers')
+  //     .then(req => req.json())
+  //     .then(res => {
+  //       const taskOwner = res.find(member => member.email == email);
+  //       const employees = res.filter(employee => employee.companyName == taskOwner.companyName);
+  //       setMembers(employees);
+  //     })
+  // }
+
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const handleAddPepole = (project) => {
-    setIsModalOpen(true)
-    const email = project.email;
-
-
-    fetch('http://localhost:5000/allUsers')
+    setSelectedProject(project); // Set the selected project
+    setIsModalOpen(true);
+    // Fetch members data for the current project
+    fetch(`http://localhost:5000/allUsers`)
       .then(req => req.json())
       .then(res => {
-        const taskOwner = res.find(member => member.email == email);
-        const employees = res.filter(employee => employee.companyName == taskOwner.companyName);
+        const taskOwner = res.find(member => member.email === project.email);
+        const employees = res.filter(employee => employee.companyName === taskOwner.companyName);
         setMembers(employees);
       })
+      .catch(error => {
+        console.error("Error fetching members data:", error);
+      });
   }
 
-  const handleAddToTask = (project, email, displayName, photoURL) => {
-    const projectInfo = { project, email, displayName, photoURL };
 
+
+  const handleAddToTask = (project, email, displayName, photoURL, index) => {
+    const projectInfo = { project, email, displayName, photoURL, index };
 
     fetch(`http://localhost:5000/addMember/${project._id}`, {
       method: 'PUT',
@@ -53,6 +71,7 @@ const Projects = () => {
       })
   }
 
+
   const handleDeleteProject = (project) => {
     fetch(`http://localhost:5000/projects/${project._id}`, {
       method: 'DELETE',
@@ -64,6 +83,7 @@ const Projects = () => {
       .then(res => res.json())
       .then(data => {
         if (data.deletedCount) {
+          setUpdatePage(!updatePage);
           toast.success('Project Deleted Sucessfully.')
         }
       })
@@ -80,7 +100,6 @@ const Projects = () => {
       .then(res => res.json())
       .then(data => console.log(data))
   }
-
 
   useEffect(() => {
     // Fetch projects with specific email filter
@@ -168,6 +187,7 @@ const Projects = () => {
 
                   {isModalOpen && <Modal setIsClicked={setIsModalOpen} >
                     <h1 className="text-2xl font-semibold mb-3">All Members</h1>
+
                     <ul className="max-w-full divide-y divide-gray-200">
                       {members?.map((member, i) => <li key={i} className="pb-3 sm:pb-4">
                         <div className="flex items-center space-x-4 rtl:space-x-reverse">
@@ -186,7 +206,7 @@ const Projects = () => {
                             </p>
                           </div>
                           <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                            <button onClick={() => handleAddToTask(project, member?.email, member?.displayName, member?.photoURL)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Add</button>
+                          <button onClick={() => handleAddToTask(selectedProject, member?.email, member?.displayName, member?.photoURL, index)} className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Add</button>
                           </div>
                         </div>
                       </li>

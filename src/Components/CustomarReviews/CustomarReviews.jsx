@@ -47,11 +47,11 @@ const reviews = [
 
 const CustomerReview = () => {
     return (
-        <div className="my-10">
+        <div className="my-10 mx-2">
             <h1 className="text-3xl font-semibold text-center mb-5">Customar Reviews</h1>
             <div className="flex max-w-4xl mx-auto">
                 <Swiper
-                    slidesPerView={3}
+                    slidesPerView={1}
                     spaceBetween={30}
                     pagination={{
                         clickable: true,

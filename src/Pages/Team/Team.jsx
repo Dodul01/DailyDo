@@ -30,7 +30,7 @@ const Team = () => {
     return (
         <div className="lg:mb-0 mb-16">
             <h1 className="text-2xl font-semibold mb-3">You Team</h1>
-            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-2">
+            <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-2">
                 {members.map((member, index) => {
                     return <div className="relative h-[250px] lg:w-[200px] md:w-[200px] w-full overflow-hidden rounded-tl-3xl rounded-br-3xl border border-b-0 shadow-sm" key={member._id}>
                         <img className="h-[250px] lg:w-[200px] md:w-[200px] w-full object-cover bg-center" src={member?.photoURL} alt="" />

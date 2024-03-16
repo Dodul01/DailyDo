@@ -25,7 +25,7 @@ const SignUp = () => {
         const isAdmin = false;
         const isVerifyed = false;
 
-        const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin , isVerifyed};
+        const user = { displayName, companyName, photoURL, email, phoneNumber, userRole, isAdmin, isVerifyed };
 
         // Validation
         if (!displayName || !companyName || !photoURL || !email || !password || !phoneNumber || !userRole) {
@@ -81,7 +81,6 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 setCompanyes(data);
-                console.log(data);
             })
     }, [])
 

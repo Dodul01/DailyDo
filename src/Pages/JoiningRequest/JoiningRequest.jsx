@@ -3,7 +3,7 @@ import { AppContext } from "../../AppContext/AppContextProvider";
 import { toast } from 'react-hot-toast';
 
 const JoiningRequest = () => {
-    const { currentUser } = useContext(AppContext);
+    const { currentUser, updatePage, setUpdatePage } = useContext(AppContext);
     const [employees, setEmployees] = useState([]);
 
     const handleAddToCompany = (employee) => {
@@ -16,16 +16,16 @@ const JoiningRequest = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.upsertedId) {
+                if (data.modifiedCount > 0) {
                     toast.success('Successfully added to your team.')
+                    setUpdatePage(!updatePage)
                 }
             })
 
     }
 
     const handleReject = () => {
-        toast.success('Member Rejected sucesfully.')
+        toast.success('We are working on this feature.')
     }
 
 
@@ -39,7 +39,7 @@ const JoiningRequest = () => {
                     setEmployees(members);
                 }
             })
-    }, [])
+    }, [updatePage])
 
     return (
         <div>

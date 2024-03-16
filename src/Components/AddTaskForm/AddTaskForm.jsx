@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { AppContext } from "../../AppContext/AppContextProvider";
 
 const AddTaskForm = () => {
-    const { currentUser, setUpdatePage } = useContext(AppContext);
+    const { currentUser, setUpdatePage, updatePage } = useContext(AppContext);
     const [errorMsg, setErrorMsg] = useState('');
 
     const handleFormSubmit = (e) => {
@@ -22,8 +22,6 @@ const AddTaskForm = () => {
         } else {
             setErrorMsg('');
 
-            setUpdatePage(true);
-
             fetch('http://localhost:5000/projects', {
                 method: 'POST',
                 headers: {
@@ -35,6 +33,7 @@ const AddTaskForm = () => {
                 .then((data) => {
                     if (data.insertedId) {
                         toast.success('Project Created Sucessfully')
+                        setUpdatePage(!updatePage);
                     }
                 })
 
