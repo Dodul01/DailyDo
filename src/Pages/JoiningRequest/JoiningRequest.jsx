@@ -44,13 +44,12 @@ const JoiningRequest = () => {
     return (
         <div>
             <h1 className='text-4xl font-semibold'>All Joining Request</h1>
-            <div className="lg:my-2 grid grid-cols-3 gap-2">
+            <div className="lg:my-2 grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-2">
                 {employees.map((employee) => {
 
                     if (employee.isVerifyed == true) {
                         return ''
                     }
-
 
                     return <div key={employee._id}>
                         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">

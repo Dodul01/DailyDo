@@ -87,7 +87,7 @@ const SignUp = () => {
 
     return (
         <div className='flex items-center justify-center h-screen'>
-            <div className='flex-1'>
+            <div className='flex-1 lg:block md:block hidden'>
                 <h1 className='text-3xl font-bold text-center'> <span className='text-blue-600'>Daily</span>Do<span className='text-blue-600'>.</span></h1>
                 <p className='text-center text-gray-600 text-lg font-semibold'>Manage Your Task Easily</p>
                 <img className='w-full max-h-[500px] object-cover' src="https://i.ibb.co/TL9QKb3/Safe-pana.png" alt="" />

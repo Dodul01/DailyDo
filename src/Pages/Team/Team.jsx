@@ -28,12 +28,12 @@ const Team = () => {
 
 
     return (
-        <div>
+        <div className="lg:mb-0 mb-16">
             <h1 className="text-2xl font-semibold mb-3">You Team</h1>
-            <div className="grid grid-cols-5">
+            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-2">
                 {members.map((member, index) => {
-                    return <div className="relative h-[250px] w-[200px] overflow-hidden rounded-tl-3xl rounded-br-3xl border border-b-0 shadow-sm" key={member._id}>
-                        <img className="h-[250px] w-[200px] object-cover bg-center" src={member?.photoURL} alt="" />
+                    return <div className="relative h-[250px] lg:w-[200px] md:w-[200px] w-full overflow-hidden rounded-tl-3xl rounded-br-3xl border border-b-0 shadow-sm" key={member._id}>
+                        <img className="h-[250px] lg:w-[200px] md:w-[200px] w-full object-cover bg-center" src={member?.photoURL} alt="" />
 
                         <button onClick={() => toggleDropdown(index)} className="absolute top-2 right-2 inline-block text-black hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5">
                             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">

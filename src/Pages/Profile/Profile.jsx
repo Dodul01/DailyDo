@@ -19,16 +19,19 @@ const Profile = () => {
         <div>
             <div className='relative'>
                 <img className='w-full h-[150px] object-cover rounded-lg' src={mountain} alt="mountain" />
-                <div className='absolute top-14 left-4'>
-                    <div className='border-8 border-white rounded-lg'>
-                        <img className='h-[150px] w-[150px] object-cover' src={currentUser?.photoURL} alt="" />
+                <div>
+                    <div className='absolute top-14 lg:left-4 md:left-4 left-2'>
+                        <div className='border-8 border-white rounded-lg'>
+                            <img className='h-[150px] w-[150px] object-cover' src={currentUser?.photoURL} alt="" />
+                        </div>
                     </div>
-                </div>
-                <div className='absolute top-16 left-48'>
-                    <h1 className='text-2xl font-semibold text-white'>{currentUser?.displayName}</h1>
-                    <div className='flex gap-2 text-white text-lg'>
-                        <p>{user?.userRole}</p> |
-                        <p>{user?.email}</p>
+
+                    <div className='absolute lg:top-16 md:top-16 top-56 lg:left-48 md:left-48 left-2'>
+                        <h1 className='lg:text-2xl md:text-2xl text-xl font-semibold lg:text-white md:text-white text-black'>{currentUser?.displayName}</h1>
+                        <div className='flex gap-2 lg:text-white md:text-white text-black lg:text-lg md:text-lg text-sm'>
+                            <p>{user?.userRole}</p> |
+                            <p>{user?.email}</p>
+                        </div>
                     </div>
                 </div>
             </div>

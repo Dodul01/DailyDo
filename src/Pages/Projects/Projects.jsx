@@ -110,9 +110,9 @@ const Projects = () => {
 
 
   return (
-    <div>
+    <div className="lg:mb-0 mb-16">
       {/* Name and image Section starts here */}
-      <div className="flex items-center justify-between border-b-2 pb-4">
+      <div className="flex items-center justify-between flex-wrap border-b-2 pb-4">
         <div className="flex items-center gap-2">
           <img className="h-[80px] w-[80px] object-cover rounded-full border border-blue-600" src={currentUser?.photoURL} alt="" />
           <div>
@@ -122,7 +122,7 @@ const Projects = () => {
         </div>
 
         <div>
-          <button onClick={() => setIsClicked(true)} className="bg-blue-600 text-white px-3 py-2 text-lg font-semibold flex items-center justify-center gap-1 rounded-lg"><AiFillPlusCircle className='text-4xl bg-blue-600' /> Create Project</button>
+          <button onClick={() => setIsClicked(true)} className="bg-blue-600 lg:w-auto lg:mt-0 md:w-auto md:mt-0 w-full mt-4 text-white px-3 py-2 text-lg font-semibold flex items-center justify-center gap-1 rounded-lg"><AiFillPlusCircle className='text-4xl bg-blue-600' /> Create Project</button>
           {isClicked && <Modal setIsClicked={setIsClicked}>
             <AddTaskForm />
           </Modal>}
@@ -132,7 +132,7 @@ const Projects = () => {
 
       <h1 className='text-3xl font-bold mx-3 my-5'>My Projects</h1>
 
-      <div className="w-full grid lg:grid-cols-3 gap-4">
+      <div className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
         {projects.map((project, index) => {
           // Check if the current user's email exists in the access array of the project
           const userHasAccess = project.access.some(item => item.email === currentUser?.email);
@@ -141,7 +141,7 @@ const Projects = () => {
           if (userHasAccess) {
             if (isComplete === 'ongoing') {
               return (
-                <div key={index} className="w-full max-w-sm bg-white border p-2 border-gray-200 rounded-lg shadow">
+                <div key={index} className="w-full lg:max-w-sm bg-white border p-2 border-gray-200 rounded-lg shadow">
                   <div className="flex justify-end px-4 pt-2 relative">
                     <button onClick={() => toggleDropdown(index)} className="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5" type="button">
                       <span className="sr-only">Open dropdown</span>
